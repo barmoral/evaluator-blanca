@@ -25,8 +25,7 @@ class OsmoticCoefficient(PhysicalProperty):
     @classmethod
     def default_unit(cls):
         return unit.dimensionless
-    
-...
+
 
 custom_thermoml_props = [
     OsmoticCoefficient,
