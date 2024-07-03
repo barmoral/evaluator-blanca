@@ -1,7 +1,7 @@
 
 """
 Evaluator workflow to Load and Filter Data Sets, Estimate Data Sets, Analyze Data Sets
-Applied to calculations of Heats of Mixing.
+Applied to calculations of Heats of Mixing and Density of Water.
 """
 
 # Core Imports & Setup
@@ -52,12 +52,12 @@ data_set_initial = PhysicalPropertyDataSet.from_json("training-properties-with-w
 ## Filtering data sets
 from openff.evaluator.datasets.curation.components.filtering import FilterByPropertyTypes, FilterByPropertyTypesSchema
 
-data_set_hmix= FilterByPropertyTypes.apply(
-    data_set_initial, FilterByPropertyTypesSchema(property_types=["EnthalpyOfMixing"]))
+data_set_hmix_dens= FilterByPropertyTypes.apply(
+    data_set_initial, FilterByPropertyTypesSchema(property_types=["EnthalpyOfMixing","Density"]))
 
 ## Saving filtered data set to json file
-data_set_path = Path('filtered_dataset_hmix.json')
-data_set_hmix.json(data_set_path, format=True)
+data_set_path = Path('filtered_dataset_hmix_dens.json')
+data_set_hmix_dens.json(data_set_path, format=True)
 
 # 2) Estimating data sets
 
@@ -65,7 +65,7 @@ data_set_hmix.json(data_set_path, format=True)
 from openff.evaluator.forcefield import SmirnoffForceFieldSource
 
 ### load data
-data_set_path = Path('filtered_dataset_hmix.json')
+data_set_path = Path('filtered_dataset_hmix_dens.json')
 data_set = PhysicalPropertyDataSet.from_json(data_set_path)
 
 ### load FF
@@ -77,6 +77,7 @@ from openff.evaluator.properties import Density, EnthalpyOfMixing
 from openff.evaluator.client import RequestOptions
 
 ### density_schema = Density.default_simulation_schema(n_molecules=256)
+density_schema = Density.default_simulation_schema(n_molecules=256)
 h_mix_schema = EnthalpyOfMixing.default_simulation_schema(n_molecules=256)
 
 ### Create an options object which defines how the data set should be estimated.
@@ -86,6 +87,7 @@ estimation_options = RequestOptions()
 estimation_options.calculation_layers = ["SimulationLayer"]
 
 ### Add our custom schemas, specifying that the should be used by the 'SimulationLayer' estimation_options.add_schema("SimulationLayer", "Density", density_schema)
+estimation_options.add_schema("SimulationLayer", "Density", density_schema)
 estimation_options.add_schema("SimulationLayer", "EnthalpyOfMixing", h_mix_schema)
 
 ## Launching a Server and Client
@@ -123,8 +125,76 @@ with DaskLocalCluster(number_of_workers=1, resources_per_worker=resources) as ca
     results, exception = request.results(synchronous=True, polling_interval=30)
     assert exception is None
 
-    a = results.estimated_properties.json("estimated_dataset_hmix.json", format=True)
+    a = results.estimated_properties.json("estimated_dataset_hmix_dens.json", format=True)
     print(a)
 
-    # 3) Analysing data sets
+ # 3) Analysing data sets
     
+## Loading the data sets
+experimental_data_set_path = "filtered_dataset_hmix_dens.json"
+estimated_data_set_path = "estimated_dataset_hmix_dens.json"
+
+experimental_data_set = PhysicalPropertyDataSet.from_json(experimental_data_set_path)
+estimated_data_set = PhysicalPropertyDataSet.from_json(estimated_data_set_path)
+
+## Extracting the results
+properties_by_type = {
+    "Density": [],
+    "EnthalpyOfMixing": []
+}
+
+for experimental_property in experimental_data_set:
+    ### Find the estimated property which has the same id as the
+    ### experimental property.
+    estimated_property = next(
+        x for x in estimated_data_set if x.id == experimental_property.id
+    )
+    ### Add this pair of properties to the list of pairs
+    property_type = experimental_property.__class__.__name__
+    properties_by_type[property_type].append((experimental_property, estimated_property))
+
+## Plotting the results
+from matplotlib import pyplot
+
+#### Create the figure we will plot to.
+figure, axes = pyplot.subplots(nrows=1, ncols=2, figsize=(8.0, 4.0))
+
+### Set the axis titles
+axes[0].set_xlabel('OpenFF 1.0.0')
+axes[0].set_ylabel('Experimental')
+axes[0].set_title('Density $kg m^{-3}$')
+
+axes[1].set_xlabel('OpenFF 1.0.0')
+axes[1].set_ylabel('Experimental')
+axes[1].set_title('$H_{vap}$ $kJ mol^{-1}$')
+
+### Define the preferred units of the properties
+
+
+preferred_units = {
+    "Density": unit.kilogram / unit.meter ** 3,
+    "EnthalpyOfVaporization": unit.kilojoule / unit.mole
+}
+
+for index, property_type in enumerate(properties_by_type):
+
+    experimental_values = []
+    estimated_values = []
+
+    preferred_unit = preferred_units[property_type]
+
+    ### Convert the values of our properties to the preferred units.
+    for experimental_property, estimated_property in properties_by_type[property_type]:
+
+        experimental_values.append(
+            experimental_property.value.to(preferred_unit).magnitude
+        )
+        estimated_values.append(
+            estimated_property.value.to(preferred_unit).magnitude
+        )
+
+    axes[index].plot(
+        estimated_values, experimental_values, marker='x', linestyle='None'
+    )
+
+figure.savefig('hmix_dens_calcs.png')
