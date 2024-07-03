@@ -1,0 +1,12 @@
+name: eval-lily
+channels:
+  - openeye
+  - conda-forge
+dependencies:
+  - openff-evaluator ==0.4.7
+  - openff-toolkit-base ==0.14.3
+  - openeye-toolkits
+  - openmm ==8.1.0
+  - numpy ==1.24
+  - rdkit
+  - jupyter
