@@ -3,3 +3,5 @@ working-data/
 python_test/
 water_notebook/lily
 *.otf
+*.dcd
+*.lock
