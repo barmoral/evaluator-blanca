@@ -1,0 +1,37 @@
+name: old-evaluator-sfes
+channels:
+  - openeye
+  - simonboothroyd
+  - conda-forge
+  - defaults
+dependencies:
+  # pythons
+  - python ==3.9
+  - pip
+
+  # fits and properties
+  - openff-toolkit ==0.10.7
+  - openff-evaluator ==0.3.11
+  - openff-units ==0.1.6
+  - openff-recharge ==0.0.1
+  - openff-qcsubmit ==0.3.2
+  - openff-bespokefit ==0.1.1
+  - nonbonded
+
+  - openmm ==7.7.0
+  - openmmtools ==0.21.5
+  - openmmforcefields==0.11.2
+
+  - openeye-toolkits ==2022.1.1
+  - pymbar ==3.0.5
+  - yank ==0.25.2
+
+
+  # other
+  - tqdm
+  - click
+  - mdanalysis
+  - seaborn
+  - pandas
+  - dask
+  - dask-jobqueue
