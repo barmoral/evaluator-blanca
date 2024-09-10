@@ -1,0 +1,74 @@
+{
+  "@type": "openff.evaluator.datasets.datasets.PhysicalPropertyDataSet",
+  "properties": [
+    {
+      "@type": "openff.evaluator.properties.solvation.SolvationFreeEnergy",
+      "gradients": [],
+      "id": "265c7378309c4355aa01d60af70d3fca",
+      "phase": 2,
+      "source": {
+        "@type": "openff.evaluator.datasets.provenance.CalculationSource",
+        "fidelity": "SimulationLayer",
+        "provenance": "{\"protocol_schemas\": [{\"id\": \"265c7378309c4355aa01d60af70d3fca|build_solvated_coordinates\", \"type\": \"BuildCoordinatesPackmol\", \"inputs\": {\".allow_merging\": true, \".max_molecules\": 2000, \".count_exact_amount\": true, \".mass_density\": {\"value\": 0.95, \"unit\": \"gram / milliliter\", \"@type\": \"openff.evaluator.unit.Quantity\"}, \".box_aspect_ratio\": [1.0, 1.0, 1.0], \".substance\": {\"components\": [{\"smiles\": \"O\", \"role\": {\"value\": \"solv\", \"@type\": \"openff.evaluator.substances.components.Component.Role\"}, \"@type\": \"openff.evaluator.substances.components.Component\"}, {\"smiles\": \"CCCCCC(=O)OC\", \"role\": {\"value\": \"sol\", \"@type\": \"openff.evaluator.substances.components.Component.Role\"}, \"@type\": \"openff.evaluator.substances.components.Component\"}], \"amounts\": {\"CCCCCC(=O)OC{sol}\": [{\"value\": 1, \"@type\": \"openff.evaluator.substances.amounts.ExactAmount\"}], \"O{solv}\": [{\"value\": 1.0, \"@type\": \"openff.evaluator.substances.amounts.MoleFraction\"}]}, \"@type\": \"openff.evaluator.substances.substances.Substance\"}, \".tolerance\": {\"value\": 2.0, \"unit\": \"angstrom\", \"@type\": \"openff.evaluator.unit.Quantity\"}, \".verbose_packmol\": false, \".retain_packmol_files\": false}, \"@type\": \"openff.evaluator.workflow.schemas.ProtocolSchema\"}, {\"id\": \"265c7378309c4355aa01d60af70d3fca|energy_minimisation\", \"type\": \"OpenMMEnergyMinimisation\", \"inputs\": {\".allow_merging\": true, \".input_coordinate_file\": {\"full_path\": \"265c7378309c4355aa01d60af70d3fca|build_solvated_coordinates.coordinate_file_path\", \"@type\": \"openff.evaluator.workflow.utils.ProtocolPath\"}, \".parameterized_system\": {\"full_path\": \"265c7378309c4355aa01d60af70d3fca|assign_solvated_parameters.parameterized_system\", \"@type\": \"openff.evaluator.workflow.utils.ProtocolPath\"}, \".tolerance\": {\"value\": 10.0, \"unit\": \"kilojoule / mole\", \"@type\": \"openff.evaluator.unit.Quantity\"}, \".max_iterations\": 0, \".enable_pbc\": true}, \"@type\": \"openff.evaluator.workflow.schemas.ProtocolSchema\"}, {\"id\": \"265c7378309c4355aa01d60af70d3fca|equilibration_simulation\", \"type\": \"OpenMMSimulation\", \"inputs\": {\".allow_merging\": true, \".steps_per_iteration\": 100000, \".total_number_of_iterations\": 1, \".output_frequency\": 10000, \".checkpoint_frequency\": 10, \".timestep\": {\"value\": 2.0, \"unit\": \"femtosecond\", \"@type\": \"openff.evaluator.unit.Quantity\"}, \".thermodynamic_state\": {\"temperature\": {\"value\": 298.15, \"unit\": \"kelvin\", \"@type\": \"openff.evaluator.unit.Quantity\"}, \"pressure\": {\"value\": 101.325, \"unit\": \"kilopascal\", \"@type\": \"openff.evaluator.unit.Quantity\"}, \"@type\": \"openff.evaluator.thermodynamics.ThermodynamicState\"}, \".ensemble\": {\"value\": \"NPT\", \"@type\": \"openff.evaluator.thermodynamics.Ensemble\"}, \".thermostat_friction\": {\"value\": 1.0, \"unit\": \"1 / picosecond\", \"@type\": \"openff.evaluator.unit.Quantity\"}, \".input_coordinate_file\": {\"full_path\": \"265c7378309c4355aa01d60af70d3fca|energy_minimisation.output_coordinate_file\", \"@type\": \"openff.evaluator.workflow.utils.ProtocolPath\"}, \".parameterized_system\": {\"full_path\": \"265c7378309c4355aa01d60af70d3fca|assign_solvated_parameters.parameterized_system\", \"@type\": \"openff.evaluator.workflow.utils.ProtocolPath\"}, \".enable_pbc\": true, \".allow_gpu_platforms\": true, \".high_precision\": false, \".gradient_parameters\": []}, \"@type\": \"openff.evaluator.workflow.schemas.ProtocolSchema\"}, {\"id\": \"265c7378309c4355aa01d60af70d3fca|filter_solvent\", \"type\": \"FilterSubstanceByRole\", \"inputs\": {\".allow_merging\": true, \".input_substance\": {\"components\": [{\"smiles\": \"O\", \"role\": {\"value\": \"solv\", \"@type\": \"openff.evaluator.substances.components.Component.Role\"}, \"@type\": \"openff.evaluator.substances.components.Component\"}, {\"smiles\": \"CCCCCC(=O)OC\", \"role\": {\"value\": \"sol\", \"@type\": \"openff.evaluator.substances.components.Component.Role\"}, \"@type\": \"openff.evaluator.substances.components.Component\"}], \"amounts\": {\"CCCCCC(=O)OC{sol}\": [{\"value\": 1, \"@type\": \"openff.evaluator.substances.amounts.ExactAmount\"}], \"O{solv}\": [{\"value\": 1.0, \"@type\": \"openff.evaluator.substances.amounts.MoleFraction\"}]}, \"@type\": \"openff.evaluator.substances.substances.Substance\"}, \".component_roles\": [{\"value\": \"solv\", \"@type\": \"openff.evaluator.substances.components.Component.Role\"}], \".expected_components\": {\"@type\": \"openff.evaluator.attributes.attributes.UndefinedAttribute\"}}, \"@type\": \"openff.evaluator.workflow.schemas.ProtocolSchema\"}, {\"id\": \"265c7378309c4355aa01d60af70d3fca|filter_solute\", \"type\": \"FilterSubstanceByRole\", \"inputs\": {\".allow_merging\": true, \".input_substance\": {\"components\": [{\"smiles\": \"O\", \"role\": {\"value\": \"solv\", \"@type\": \"openff.evaluator.substances.components.Component.Role\"}, \"@type\": \"openff.evaluator.substances.components.Component\"}, {\"smiles\": \"CCCCCC(=O)OC\", \"role\": {\"value\": \"sol\", \"@type\": \"openff.evaluator.substances.components.Component.Role\"}, \"@type\": \"openff.evaluator.substances.components.Component\"}], \"amounts\": {\"CCCCCC(=O)OC{sol}\": [{\"value\": 1, \"@type\": \"openff.evaluator.substances.amounts.ExactAmount\"}], \"O{solv}\": [{\"value\": 1.0, \"@type\": \"openff.evaluator.substances.amounts.MoleFraction\"}]}, \"@type\": \"openff.evaluator.substances.substances.Substance\"}, \".component_roles\": [{\"value\": \"sol\", \"@type\": \"openff.evaluator.substances.components.Component.Role\"}], \".expected_components\": {\"@type\": \"openff.evaluator.attributes.attributes.UndefinedAttribute\"}}, \"@type\": \"openff.evaluator.workflow.schemas.ProtocolSchema\"}, {\"id\": \"265c7378309c4355aa01d60af70d3fca|build_vacuum_coordinates\", \"type\": \"BuildCoordinatesPackmol\", \"inputs\": {\".allow_merging\": true, \".max_molecules\": 1, \".count_exact_amount\": true, \".mass_density\": {\"value\": 0.95, \"unit\": \"gram / milliliter\", \"@type\": \"openff.evaluator.unit.Quantity\"}, \".box_aspect_ratio\": [1.0, 1.0, 1.0], \".substance\": {\"full_path\": \"265c7378309c4355aa01d60af70d3fca|filter_solute.filtered_substance\", \"@type\": \"openff.evaluator.workflow.utils.ProtocolPath\"}, \".tolerance\": {\"value\": 2.0, \"unit\": \"angstrom\", \"@type\": \"openff.evaluator.unit.Quantity\"}, \".verbose_packmol\": false, \".retain_packmol_files\": false}, \"@type\": \"openff.evaluator.workflow.schemas.ProtocolSchema\"}, {\"id\": \"265c7378309c4355aa01d60af70d3fca|conditional_group\", \"type\": \"ConditionalGroup\", \"inputs\": {\".allow_merging\": true, \".conditions\": [], \".max_iterations\": 20}, \"protocol_schemas\": {\"265c7378309c4355aa01d60af70d3fca|total_iterations\": {\"id\": \"265c7378309c4355aa01d60af70d3fca|total_iterations\", \"type\": \"MultiplyValue\", \"inputs\": {\".allow_merging\": true, \".value\": 2000, \".multiplier\": {\"full_path\": \".current_iteration\", \"@type\": \"openff.evaluator.workflow.utils.ProtocolPath\"}}, \"@type\": \"openff.evaluator.workflow.schemas.ProtocolSchema\"}, \"265c7378309c4355aa01d60af70d3fca|run_solvation_yank\": {\"id\": \"265c7378309c4355aa01d60af70d3fca|run_solvation_yank\", \"type\": \"SolvationYankProtocol\", \"inputs\": {\".allow_merging\": true, \".thermodynamic_state\": {\"temperature\": {\"value\": 298.15, \"unit\": \"kelvin\", \"@type\": \"openff.evaluator.unit.Quantity\"}, \"pressure\": {\"value\": 101.325, \"unit\": \"kilopascal\", \"@type\": \"openff.evaluator.unit.Quantity\"}, \"@type\": \"openff.evaluator.thermodynamics.ThermodynamicState\"}, \".number_of_equilibration_iterations\": 1, \".number_of_iterations\": {\"full_path\": \"265c7378309c4355aa01d60af70d3fca|total_iterations.result\", \"@type\": \"openff.evaluator.workflow.utils.ProtocolPath\"}, \".steps_per_iteration\": 500, \".checkpoint_interval\": 1, \".timestep\": {\"value\": 2, \"unit\": \"femtosecond\", \"@type\": \"openff.evaluator.unit.Quantity\"}, \".verbose\": false, \".setup_only\": false, \".gradient_parameters\": [], \".solute\": {\"full_path\": \"265c7378309c4355aa01d60af70d3fca|filter_solute.filtered_substance\", \"@type\": \"openff.evaluator.workflow.utils.ProtocolPath\"}, \".solvent_1\": {\"full_path\": \"265c7378309c4355aa01d60af70d3fca|filter_solvent.filtered_substance\", \"@type\": \"openff.evaluator.workflow.utils.ProtocolPath\"}, \".solvent_2\": {\"components\": [], \"amounts\": {}, \"@type\": \"openff.evaluator.substances.substances.Substance\"}, \".solution_1_coordinates\": {\"full_path\": \"265c7378309c4355aa01d60af70d3fca|equilibration_simulation.output_coordinate_file\", \"@type\": \"openff.evaluator.workflow.utils.ProtocolPath\"}, \".solution_1_system\": {\"full_path\": \"265c7378309c4355aa01d60af70d3fca|assign_solvated_parameters.parameterized_system\", \"@type\": \"openff.evaluator.workflow.utils.ProtocolPath\"}, \".solution_2_coordinates\": {\"full_path\": \"265c7378309c4355aa01d60af70d3fca|build_vacuum_coordinates.coordinate_file_path\", \"@type\": \"openff.evaluator.workflow.utils.ProtocolPath\"}, \".solution_2_system\": {\"full_path\": \"265c7378309c4355aa01d60af70d3fca|assign_parameters.parameterized_system\", \"@type\": \"openff.evaluator.workflow.utils.ProtocolPath\"}, \".electrostatic_lambdas_1\": {\"@type\": \"openff.evaluator.attributes.attributes.UndefinedAttribute\"}, \".steric_lambdas_1\": {\"@type\": \"openff.evaluator.attributes.attributes.UndefinedAttribute\"}, \".electrostatic_lambdas_2\": {\"@type\": \"openff.evaluator.attributes.attributes.UndefinedAttribute\"}, \".steric_lambdas_2\": {\"@type\": \"openff.evaluator.attributes.attributes.UndefinedAttribute\"}}, \"@type\": \"openff.evaluator.workflow.schemas.ProtocolSchema\"}}, \"@type\": \"openff.evaluator.workflow.schemas.ProtocolGroupSchema\"}, {\"id\": \"265c7378309c4355aa01d60af70d3fca|assign_solvated_parameters\", \"type\": \"BuildSmirnoffSystem\", \"inputs\": {\".allow_merging\": true, \".force_field_path\": \"working-data/SimulationLayer/807962e811c74eebbb489b71d1d57cfd/845fe26db2354bf19428dcc6b346f538\", \".coordinate_file_path\": {\"full_path\": \"265c7378309c4355aa01d60af70d3fca|build_solvated_coordinates.coordinate_file_path\", \"@type\": \"openff.evaluator.workflow.utils.ProtocolPath\"}, \".substance\": {\"components\": [{\"smiles\": \"O\", \"role\": {\"value\": \"solv\", \"@type\": \"openff.evaluator.substances.components.Component.Role\"}, \"@type\": \"openff.evaluator.substances.components.Component\"}, {\"smiles\": \"CCCCCC(=O)OC\", \"role\": {\"value\": \"sol\", \"@type\": \"openff.evaluator.substances.components.Component.Role\"}, \"@type\": \"openff.evaluator.substances.components.Component\"}], \"amounts\": {\"CCCCCC(=O)OC{sol}\": [{\"value\": 1, \"@type\": \"openff.evaluator.substances.amounts.ExactAmount\"}], \"O{solv}\": [{\"value\": 1.0, \"@type\": \"openff.evaluator.substances.amounts.MoleFraction\"}]}, \"@type\": \"openff.evaluator.substances.substances.Substance\"}}, \"@type\": \"openff.evaluator.workflow.schemas.ProtocolSchema\"}, {\"id\": \"265c7378309c4355aa01d60af70d3fca|assign_parameters\", \"type\": \"BuildSmirnoffSystem\", \"inputs\": {\".allow_merging\": true, \".force_field_path\": \"working-data/SimulationLayer/807962e811c74eebbb489b71d1d57cfd/845fe26db2354bf19428dcc6b346f538\", \".coordinate_file_path\": {\"full_path\": \"265c7378309c4355aa01d60af70d3fca|build_vacuum_coordinates.coordinate_file_path\", \"@type\": \"openff.evaluator.workflow.utils.ProtocolPath\"}, \".substance\": {\"full_path\": \"265c7378309c4355aa01d60af70d3fca|filter_solute.filtered_substance\", \"@type\": \"openff.evaluator.workflow.utils.ProtocolPath\"}}, \"@type\": \"openff.evaluator.workflow.schemas.ProtocolSchema\"}], \"final_value_source\": {\"full_path\": \"265c7378309c4355aa01d60af70d3fca|conditional_group/265c7378309c4355aa01d60af70d3fca|run_solvation_yank.free_energy_difference\", \"@type\": \"openff.evaluator.workflow.utils.ProtocolPath\"}, \"outputs_to_store\": {}, \"@type\": \"openff.evaluator.workflow.schemas.WorkflowSchema\"}"
+      },
+      "substance": {
+        "@type": "openff.evaluator.substances.substances.Substance",
+        "amounts": {
+          "CCCCCC(=O)OC{sol}": [
+            {
+              "@type": "openff.evaluator.substances.amounts.ExactAmount",
+              "value": 1
+            }
+          ],
+          "O{solv}": [
+            {
+              "@type": "openff.evaluator.substances.amounts.MoleFraction",
+              "value": 1.0
+            }
+          ]
+        },
+        "components": [
+          {
+            "@type": "openff.evaluator.substances.components.Component",
+            "role": {
+              "@type": "openff.evaluator.substances.components.Component.Role",
+              "value": "solv"
+            },
+            "smiles": "O"
+          },
+          {
+            "@type": "openff.evaluator.substances.components.Component",
+            "role": {
+              "@type": "openff.evaluator.substances.components.Component.Role",
+              "value": "sol"
+            },
+            "smiles": "CCCCCC(=O)OC"
+          }
+        ]
+      },
+      "thermodynamic_state": {
+        "@type": "openff.evaluator.thermodynamics.ThermodynamicState",
+        "pressure": {
+          "@type": "openff.evaluator.unit.Quantity",
+          "unit": "kilopascal",
+          "value": 101.325
+        },
+        "temperature": {
+          "@type": "openff.evaluator.unit.Quantity",
+          "unit": "kelvin",
+          "value": 298.15
+        }
+      },
+      "uncertainty": {
+        "@type": "openff.evaluator.unit.Quantity",
+        "unit": "joule / mole",
+        "value": 268.5830598614909
+      },
+      "value": {
+        "@type": "openff.evaluator.unit.Quantity",
+        "unit": "joule / mole",
+        "value": -12727.085124529163
+      }
+    }
+  ]
+}
