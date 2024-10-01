@@ -5,3 +5,6 @@ water_notebook/lily
 *.otf
 *.dcd
 *.lock
+*.xtc
+*.zip
+*.nc
