@@ -1,0 +1,6 @@
+Molecule number: 500 
+Hmix 500_2ns replicates, Average Potential Energy (kJ/mol): 31512.856 +/- 16.167 
+Hmix 500_2ns replicates, Average Kinetic Energy (kJ/mol): 19654.916 +/- 4.394 
+Hmix 500_2ns replicates, Average Total Energy (kJ/mol): 51167.772 +/- 18.114 
+Hmix 500_2ns replicates, Average Box Volume (nm^3): 60.861 +/- 0.019 
+Hmix 500_2ns replicates, Average Density (g/mL): 1.123 +/- 0.000 

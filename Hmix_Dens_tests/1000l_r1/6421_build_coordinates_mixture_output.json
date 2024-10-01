@@ -1,0 +1,11 @@
+{".output_number_of_molecules": 1000, ".output_substance": 
+
+{"components": [{"smiles": "O", "role": {"value": "solv", "@type": "openff.evaluator.substances.components.Component.Role"}, 
+"@type": "openff.evaluator.substances.components.Component"}, {"smiles": "OCCN(CCO)CCO", "role": {"value": "solv", "@type": "openff.evaluator.substances.components.Component.Role"}, "@type": "openff.evaluator.substances.components.Component"}], 
+"amounts": {"O{solv}": [{"value": 0.51, "@type": "openff.evaluator.substances.amounts.MoleFraction"}], 
+"OCCN(CCO)CCO{solv}": [{"value": 0.49, "@type": "openff.evaluator.substances.amounts.MoleFraction"}]}, 
+"@type": "openff.evaluator.substances.substances.Substance"}, 
+
+".assigned_residue_names": {"O{solv}": "HOH", "OCCN(CCO)CCO{solv}": "QRW"}, 
+
+".coordinate_file_path": "working-data/SimulationLayer/e8c168c73b7b4db0b5d49131e4fc571f/6421_build_coordinates_mixture/output.pdb"}

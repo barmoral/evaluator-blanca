@@ -1,0 +1,6 @@
+Molecule number: 1000 
+Hmix 1000_20ns replicates, Average Potential Energy (kJ/mol): 59951.433 +/- 59.593 
+Hmix 1000_20ns replicates, Average Kinetic Energy (kJ/mol): 39317.899 +/- 2.373 
+Hmix 1000_20ns replicates, Average Total Energy (kJ/mol): 99269.332 +/- 59.942 
+Hmix 1000_20ns replicates, Average Box Volume (nm^3): 120.481 +/- 0.063 
+Hmix 1000_20ns replicates, Average Density (g/mL): 1.134 +/- 0.001 
