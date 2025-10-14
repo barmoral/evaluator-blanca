@@ -1,0 +1,1 @@
+{".weighted_value": {"value": {"value": {"value": -21.808035820791243, "unit": "kilojoule / mole", "@type": "openff.evaluator.unit.Quantity"}, "error": {"value": 0.005444901303447283, "unit": "kilojoule / mole", "@type": "openff.evaluator.unit.Quantity"}, "@type": "openff.evaluator.unit.Measurement"}, "gradients": [], "@type": "openff.evaluator.utils.observables.Observable"}}

@@ -1,0 +1,7 @@
+Molecule number: 1000 
+Hmix iso replicates, Average Potential Energy (kJ/mol): -50615.855 +/- 7.772 
+Hmix iso replicates, Average Kinetic Energy (kJ/mol): 7822.746 +/- 5.398 
+Hmix iso replicates, Average Total Energy (kJ/mol): -42793.109 +/- 13.146 
+Hmix iso replicates, Average Temperature (K): 313.620 +/- 0.216 
+Hmix iso replicates, Average Box Volume (nm^3): 30.158 +/- 0.006 
+Hmix iso replicates, Average Density (g/mL): 0.992 +/- 0.000 

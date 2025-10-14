@@ -1,0 +1,6 @@
+Component0 Values list: [-12.735394202578126, -12.721637161428644, -12.772998612536147] 
+Component0 Errors list: [0.034873044747507, 0.042448299700626003, 0.024990934539772] 
+Component0 Total points list: [1000, 1000, 1000] 
+Component0 Uncorrelated points list: [247, 163, 334] 
+Component0 Statistical inefficiency list: [3.791415168379058, 5.828278525148131, 2.277539692819583] 
+Component0 Equilibration index list: [12, 24, 0] 

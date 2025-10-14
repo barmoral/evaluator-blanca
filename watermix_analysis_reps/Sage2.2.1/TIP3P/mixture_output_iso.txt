@@ -1,0 +1,6 @@
+Mixture Values list: [-20.834618015439926, -20.743974845929227, -20.825040711572168] 
+Mixture Errors list: [0.017443118211388, 0.024205884481817003, 0.021481574016191003] 
+Mixture Total points list: [1000, 1000, 1000] 
+Mixture Uncorrelated points list: [500, 334, 334] 
+Mixture Statistical inefficiency list: [1.969572589308284, 2.257188971133651, 2.797349855860338] 
+Mixture Equilibration index list: [0, 0, 0] 
